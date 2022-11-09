@@ -1,0 +1,335 @@
+MDNavigationLayout:
+    ScreenManager:
+
+        MDScreen:
+
+            MDBoxLayout:
+                orientation: 'vertical'
+
+                MDTopAppBar:
+                    title: "MOVA"
+                    icon:"robot-angry-outline"
+                    elevation:5
+                    left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [['cart', lambda x: nav_drawer.set_state("open")]]
+                    md_bg_color:"#8B00FF"
+
+                Widget:
+                    MDBoxLayout:
+                        height:dp(1080)
+                        width:dp(1250)
+                        orientation:"vertical"
+                        MDBoxLayout:
+                            size_hint_y:0
+                            height:dp(210)
+                            #width:dp(300)
+                            padding:[dp(5),dp(5),dp(5),dp(10)]
+                            ScrollView:
+                                bar_width:0
+                                MDBoxLayout:
+                                    adaptive_width:True
+                                    spacing:dp(20)
+                                    padding:dp(5)
+                                    BottomCard:
+                                        image:'images/9.jpg'
+                                    BottomCard:
+                                        image:'images/6.png'
+                                    BottomCard:
+                                        image:'images/4.png'
+                        MDLabel:
+                            size_hint_y:0
+                            height:dp(10)
+                            text:"                                                                  Смартфоны"
+                            theme_text_color:'Custom'
+                            text_color:"#1B0B42"
+                            font_style:"H4"
+
+                        MDBoxLayout:
+
+                            ScrollView:
+                                MDGridLayout:
+                                    cols:2
+                                    padding:dp(20)
+                                    spacing:dp(20)
+                                    adaptive_height:True
+
+                                    ElementCard:
+                                        image:'images/1.jpg'
+                                        price:'   81 500 ₽'
+                                        rate:"4.7     42 отзыва"
+                                        specifications:"   Смартфон  Apple iPhone 13 Pro Max "
+                                    ElementCard:
+                                        image:'images/2.jpg'
+                                        price:'   83 990 ₽'
+                                        rate:" 4.3    38 отзывов"
+                                        specifications:"   Смартфон Samsung Galaxy Z Flip3 "
+                                    ElementCard:
+                                        image:'images/3_2.jpg'
+                                        price:'   95 776 ₽'
+                                        rate:" 4.3    112 отзывов"
+                                        specifications:"   Смартфон HUAWEI Mate30 Pro"
+                                    ElementCard:
+                                        image:'images/3.jpg'
+                                        price:'   33 990 ₽'
+                                        rate:" 4.8   89 отзывов"
+                                        specifications:"   Смартфон Xiaomi 12 Lite"
+
+    MDNavigationDrawer:
+        id: nav_drawer
+
+        ContentNavigationDrawer:
+            id: content_drawer
+
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: self.parent.set_color_item(self)
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
+
+
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    padding: "10dp"
+    spacing: "10dp"
+
+    AnchorLayout:
+        anchor_x: "left"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "250dp", "250dp"
+            source: "images/10.png"
+
+    MDLabel:
+        text: "user_mova_1"
+        font_style: "Button"
+        adaptive_height: True
+
+    MDLabel:
+        text: "my_emal@gmail.com"
+        font_style: "Caption"
+        adaptive_height: True
+
+    ScrollView:
+
+        DrawerList:
+            id: md_list
+
+<BottomCard@MDCard>:
+    radius:[5]
+    image:""
+    specifications:""
+    size_hint_x:None
+    width:dp(1250)
+    spacing:dp(10)
+    padding:dp(5)
+    elevation:15
+    size_hint_x:None
+    FitImage:
+
+        source: root.image
+        radius: [5,]
+    #MDBoxLayout:
+
+        #MDLabel:
+            #text:  f"Iphone 13 Pro Max Голубой"
+            #theme_text_color:'Custom'
+            #text_color:"#1B0B42"
+            #markup:True
+
+<TabLabel@Label>:
+    color:0,0,0,0
+    bg_color:0,0,0,0
+    canvas.before:
+        Color:
+            rgba:self.bg_color
+        RoundedRectangle:
+            radius:[25]
+            size:self.size[0]+10,self.size[1]
+            pos:self.pos[0]-5,self.pos[1]
+
+    size_hint_y:None
+    size_hint_x:None
+    width:self.texture_size[0]
+    height:dp(50)
+    color:0,0,0,1
+
+<MagicButton@MagicBehavior+MDIconButton>
+
+
+<ContentCustomSheet@MDBoxLayout>:
+    orientation: "vertical"
+    size_hint_y: None
+    height:dp(750)
+    image:''
+    rate:""
+    price:""
+    specifications:""
+    padding:dp(5)
+    spacing:dp(6)
+    MDBoxLayout:
+        height:dp(400)
+        width:dp(700)
+        size_hint_y:None
+        pos:(20,10)
+        Image:
+            source:root.image
+            #price:root.price
+            #rate:root.rate
+            #specifications:root.specifications
+    MDLabel:
+        text:root.specifications
+        font_style:'H5'
+        theme_text_color:'Custom'
+        text_color:"#1B0B42"
+    MDLabel:
+        text:root.price
+        font_style:'H5'
+        theme_text_color:'Custom'
+        text_color:"#1B0B42"
+    MDLabel:
+        text:"-20%"
+        theme_text_color:'Custom'
+        text_color:"#FFFFFF"
+        md_bg_color:"#1B0B42"
+
+    MDBoxLayout:
+        spacing:dp(5)
+        Check:
+            selected_color:"#00008B"
+            active:True
+            unselected_color:"#00008B"
+            pos_hint: {'center_x': .5, 'center_y': .5}
+
+    MDLabel:
+        text:"    Наш магазин еще совсем новый,полная информация по товарам находится на разработке."
+        adaptive_height:True
+    MDBoxLayout:
+        adaptive_width:True
+        MDIconButton:
+            icon:'plus'
+            pos_hint:{"center_x":.5,"center_y":.5}
+        MDLabel:
+            text:"1"
+            halign:'center'
+            valign:'center'
+        MDIconButton:
+            icon:"minus"
+            pos_hint:{"center_x":.5,"center_y":.5}
+            theme_text_color:'Custom'
+            text_color:"#1B0B42"
+
+    MDBoxLayout:
+        spacing:dp(8)
+        MDRectangleFlatIconButton:
+            icon:"cart"
+            text:"В корзину"
+            size_hint_x:1
+            theme_text_color:'Custom'
+            text_color: "#FFFFFF"
+            icon_color:"#FFFFFF"
+            font_style: "Subtitle1"
+            line_color: "#7B68EE"
+            md_bg_color:"#7B68EE"
+        MDRectangleFlatIconButton:
+            icon:"cards-heart"
+            text:"В избранное"
+            size_hint_x:1
+            font_style:'H6'
+            text_color: "#FFFFFF"
+            icon_color:"#FFFFFF"
+            font_style: "Subtitle1"
+            line_color: "#7B68EE"
+            md_bg_color:"#7B68EE"
+    MDRoundFlatButton:
+        size_hint_x:1
+        text:"Купить"
+        theme_text_color:'Custom'
+        font_style: "Subtitle1"
+        text_color:"#FFFFFF"
+        md_bg_color:"#1B0B42"
+        line_color: "#1B0B42"
+<Check@MDCheckbox>:
+    group: 'group'
+    radio_icon_normal:"checkbox-blank-circle"
+    size_hint: None, None
+    size: dp(48), dp(48)
+    theme_text_color:'Custom'
+    text_color:"#1B0B42"
+
+<ElementCard@MDCard>:
+    image:''
+    rate:''
+    price:""
+    specifications:""
+    orientation:'vertical'
+    on_release:app.show_custom_bottom_sheet(root.image,root.price,root.rate,root.specifications)
+    size_hint_x:.6
+    elevation:15
+    size_hint_y:None
+    md_bg_color:"#FFFFFF"#app.theme_cls.primary_color
+    height:dp(550)
+    padding:dp(0)
+    spacing:dp(0)
+    radius:[5]
+    #MDBoxLayout:
+     #   MDIconButton:
+      #      size_hint_y:None
+       #     icon:"heart"
+        #    theme_icon_color:"Custom"
+         #   icon_size:"30sp"
+          #  icon_color:"#1B0B42"
+           # on_press:self.background_color="#8B00FF"
+            #on_release:self.background_color="#1B0B42"
+    MDBoxLayout:
+        height:dp(400)
+        width:dp(700)
+        size_hint_y:None
+        Image:
+            source:root.image
+    MDBoxLayout:
+        height:dp(10)
+        spacing:dp(0)
+        padding:dp(7)
+        MDIcon:
+            icon:'star-outline'
+            theme_text_color:'Custom'
+            text_color:"#8B00FF"
+            halign:"center"
+            size_hint_x:.15
+        MDLabel:
+            text:root.rate
+            theme_text_color:'Custom'
+            text_color:"#8B00FF"
+            font_style:"H6"
+    MDLabel:
+        text:root.price
+        font_style:'H5'
+        theme_text_color:'Custom'
+        text_color:"#1B0B42"
+    MDLabel:
+        text:root.specifications
+        theme_text_color:'Custom'
+        text_color:"#1B0B42"
+        font_style:"H6"
+
+
+
+<TabCard@MDCard>:
+    icon:""
+    text:""
+    size_hint_y:None
+    radius:dp(15)
+    height:dp(55)
+    MDIconButton:
+        icon:root.icon
+    MDLabel:
+        text:root.text
+
