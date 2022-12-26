@@ -1,0 +1,75 @@
+<MainScreen>:
+    MDScreen:
+        MDBoxLayout:
+            orientation:'vertical'
+            MDBoxLayout:
+                size_hint_y:.10
+                padding:dp(10)
+                MDBoxLayout:
+                    orientation:"vertical"
+                    height:(100)
+                    MDLabel:
+                        text:"Привет, user_name!"
+                        font_style:"H4"
+                        text_color:"#1B0B42"
+            MDBoxLayout:
+                size_hint_y:.25
+                height:dp(210)
+                padding:[dp(5),dp(5),dp(5),dp(10)]
+
+
+                ScrollView:
+                    use_overflow: True
+                    bar_width:0
+                    MDBoxLayout:
+                        adaptive_width:True
+                        spacing:dp(20)
+                        padding:dp(5)
+                        BottomCard:
+                            image:'images/9.jpg'
+                        BottomCard:
+                            image:"images/16.png"
+                        BottomCard:
+                            image:'images/6.png'
+                        BottomCard:
+                            image:'images/4.png'
+            ScrollView:
+                MDGridLayout:
+                    size_hint_y:.75
+                    cols:2
+                    padding:[dp(15),dp(15),dp(15),dp(35)]
+                    spacing:dp(10)
+                    RectangularRippleImage:
+                        source:"images/smart.png"
+
+                        on_press: root.manager.current = 'smart'
+
+                    RectangularRippleImage:
+                        source:"images/tablet.png"
+
+                        on_press: root.manager.current = 'table'
+
+                    RectangularRippleImage:
+                        source:"images/pods.png"
+
+                        on_press: root.manager.current = 'pods'
+                    RectangularRippleImage:
+                        source:"images/case.png"
+
+                        on_press: root.manager.current = 'acces'
+                    RectangularRippleImage:
+                        source:"images/cab.png"
+                        on_press: root.manager.current = 'cab'
+                    RectangularRippleImage:
+                        source:"images/about_us.png"
+                        on_press: root.manager.current = 'helper'
+
+
+
+
+    MDNavigationDrawer:
+        id: nav_drawer
+
+        ContentNavigationDrawer:
+            id: content_drawer
+

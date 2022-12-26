@@ -1,30 +1,118 @@
-MDNavigationLayout:
+#: import Window kivy.core.window.Window
+<SettingsScreen>:
+    MDScreen:
+        MDBoxLayout:
+            height:dp(1000)
+            orientation: 'vertical'
+            MDIconButton:
+                icon:"arrow-left-thin"
+                on_press: root.manager.current = 'main'
+            MDLabel:
+                text:"MOVA-это интернет-магазин электроники.\nДанный интернет магазин создан sweet_lucas для курсовой работы.\n\n\n2022"
+                theme_text_color:"Custom"
+                text_color:"#1B0B42"
+                font_style:"H3"
+
+<CartScreen>:
+    MDScreen:
+        MDBoxLayout:
+            height:dp(1000)
+            orientation: 'vertical'
+            MDIconButton:
+                icon:"arrow-left-thin"
+                on_press: root.manager.current = 'main'
+            MDBoxLayout:
+                MDLabel:
+                    pos_hint: {'x': .5,'y': .3}
+                    text:"В корзине пока пусто"
+                    theme_text_color:"Custom"
+                    text_color:"#1B0B42"
+                    font_style:"H3"
+                    bold:True
+
+<FilterScreen>:
+
+    MDScreen:
+        MDBoxLayout:
+            #height:dp(1000)
+            orientation: 'vertical'
+            MDIconButton:
+                icon:"arrow-left-thin"
+                on_press: root.manager.current = 'main'
+            MDBoxLayout:
+                MDLabel:
+                    pos_hint: {'x': .5,'y': .3}
+                    text:"Фильтры"
+                    theme_text_color:"Custom"
+                    text_color:"#1B0B42"
+                    font_style:"H3"
+                    bold:True
+            Carousel:
+                id:slide
+                MDFloatLayout:
+                    MDTextField:
+                        hint_text:"Цена до"
+                        size_hint_x:.8
+                        pos_hint:{'center_x':.5,'center_y':.5}
+                    MDTextField:
+                        hint_text:"Бренд"
+                        size_hint_x:.8
+                        pos_hint:{'center_x':.5,'center_y':.4}
+                    MDTextField:
+                        hint_text:"Сроки доставки"
+                        size_hint_x:.8
+                        pos_hint:{'center_x':.5,'center_y':.3}
+
+
+
+<PodsScreen>:
+
     ScreenManager:
 
         MDScreen:
 
             MDBoxLayout:
                 orientation: 'vertical'
-
                 MDTopAppBar:
-                    title: "MOVA"
-                    icon:"robot-angry-outline"
-                    elevation:5
-                    left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
-                    right_action_items: [['cart', lambda x: nav_drawer.set_state("open")]]
+                    #title: "                                                                                                      "
+                    use_overflow: True
+                    left_action_items:[['account-circle', lambda x: nav_drawer.set_state("open")]]
+                    right_action_items:
+                        [
+                        ["cart-outline", lambda x: app.set_screen('cart'), "Корзина", "Message star"],
+                        ["message-question", lambda x: app.set_screens("help_me"), "Поддержка", "Message question"],
+                        ]
                     md_bg_color:"#8B00FF"
 
                 Widget:
                     MDBoxLayout:
-                        height:dp(1080)
+                        height:dp(1000)
                         width:dp(1250)
                         orientation:"vertical"
+                        MDBoxLayout:
+                            size_hint_y:0
+                            height:dp(40)
+                            spacing:dp(470)
+                            MDIconButton:
+                                icon:"arrow-left-thin"
+                                on_press: root.manager.current = 'main'
+                            MDLabel:
+                                text:"       Наушники"
+                                font_style: "Caption"
+                                font_style:'H5'
+                                theme_text_color:'Custom'
+                                text_color:"#1B0B42"
+                                pos_hint:{"center_x":.5,"center_y":.5}
+
                         MDBoxLayout:
                             size_hint_y:0
                             height:dp(210)
                             #width:dp(300)
                             padding:[dp(5),dp(5),dp(5),dp(10)]
+
+
                             ScrollView:
+                                use_overflow: True
                                 bar_width:0
                                 MDBoxLayout:
                                     adaptive_width:True
@@ -33,16 +121,184 @@ MDNavigationLayout:
                                     BottomCard:
                                         image:'images/9.jpg'
                                     BottomCard:
+                                        image:"images/16.png"
+                                    BottomCard:
                                         image:'images/6.png'
                                     BottomCard:
                                         image:'images/4.png'
-                        MDLabel:
+
+
+                        MDBoxLayout:
                             size_hint_y:0
-                            height:dp(10)
-                            text:"                                                                  Смартфоны"
-                            theme_text_color:'Custom'
-                            text_color:"#1B0B42"
-                            font_style:"H4"
+                            height:dp(40)
+                            spacing:dp(470)
+                            MDIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                icon:"dots-grid"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                            MDRectangleFlatIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                text:"По популярности"
+                                icon:"text"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                theme_text_color:'Custom'
+                                text_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                            MDIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                icon:"filter"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                                on_press: root.manager.current = 'filter'
+
+
+
+                        MDBoxLayout:
+
+                            ScrollView:
+                                MDGridLayout:
+                                    cols:2
+                                    padding:dp(20)
+                                    spacing:dp(20)
+                                    adaptive_height:True
+
+                                    ElementCard:
+                                        image:'images/24.jpg'
+                                        price:'   14 490 ₽'
+                                        rate:"4.5     4 отзыва"
+                                        specifications:"   Наушники Samsung Galaxy Buds Pro"
+                                        #about:"   О товаре\niPhone 13 Pro. Новые камеры. Нереальные возможности.\niPhone 13 Pro. Грандиозный апгрейд камер Pro. Режим «Киноэффект» делает из видео настоящее кино. Дисплей Super Retina XDR с технологией ProMotion для более быстрого и плавного взаимодействия. А15 Bionic — самый быстрый чип для iPhone. Прочный корпус и огромный прирост ресурса аккумулятора.\nОсновные характеристики\n· Дисплей Super Retina XDR 6,1 дюйма1 с технологией ProMotion для более быстрого и плавного взаимодействия;\n· Режим «Киноэффект» автоматически переводит фокус между объектами при съёмке видео и создаёт красивый эффект размытия;\n· Обновлённая система камер Pro 12 Мп (телефото, широкоугольная и сверхширокоугольная); сканер LiDAR; диапазон оптического зума 6x; режим макросъёмки; Фотографические стили, видео в формате ProRes2, Smart HDR 4, Ночной режим, формат Apple ProRAW, съёмка HDR‑видео 4K в стандарте Dolby Vision;\n· A15 Bionic — самый быстрый чип для iPhone;\n· До 22 часов воспроизведения видео3;\n· Панель Ceramic Shield для повышенной прочности;\n· Надёжная защита от воды (IP68)4;\n· iOS 15 с новыми функциями, расширяющими возможности iPhone5;\n· Поддержка аксессуаров MagSafe, которые легко крепятся и обеспечивают более быструю беспроводную зарядку6."
+                                    ElementCard:
+                                        image:'images/25.jpg'
+                                        price:'   4 199 ₽'
+                                        rate:" 4.2    624 отзыва"
+                                        specifications:"   Смартфон Samsung Galaxy Z Flip3 "
+                                        #about:"rbgntr"
+                                    ElementCard:
+                                        image:'images/26.jpg'
+                                        price:'   15 900 ₽'
+                                        rate:" 4.7    1348 отзывов"
+                                        specifications:"   Наушники Apple AirPods Pro"
+                                        #about:"rbgntr"
+                                    ElementCard:
+                                        image:'images/27.jpg'
+                                        price:'   12 990 ₽'
+                                        rate:" 4.8   140 отзывов"
+                                        specifications:"    Наушники HUAWEI FreeBuds Pro 2"
+                                        #about:"rbgntr"
+
+
+    MDNavigationDrawer:
+        id: nav_drawer
+
+        ContentNavigationDrawer:
+            id: content_drawer
+
+<SmartScreen>:
+    ScreenManager:
+
+        MDScreen:
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDTopAppBar:
+                    #title: "                                                                                                      "
+                    use_overflow: True
+                    left_action_items:[['account-circle', lambda x: nav_drawer.set_state("open")]]
+                    right_action_items:
+                        [
+                        ["cart-outline", lambda x: app.set_screen('cart'), "Корзина", "Message star"],
+                        ["message-question", lambda x: app.set_screens("help_me"), "Поддержка", "Message question"],
+                        ]
+                    md_bg_color:"#8B00FF"
+
+                Widget:
+                    MDBoxLayout:
+                        height:dp(1000)
+                        width:dp(1250)
+                        orientation:"vertical"
+                        MDBoxLayout:
+                            size_hint_y:0
+                            height:dp(40)
+                            spacing:dp(470)
+                            MDIconButton:
+                                icon:"arrow-left-thin"
+                                on_press: root.manager.current = 'main'
+                            MDLabel:
+                                text:"       Смартфоны"
+                                font_style: "Caption"
+                                font_style:'H5'
+                                theme_text_color:'Custom'
+                                text_color:"#1B0B42"
+
+                        MDBoxLayout:
+                            size_hint_y:0
+                            height:dp(210)
+                            #width:dp(300)
+                            padding:[dp(5),dp(5),dp(5),dp(10)]
+
+
+                            ScrollView:
+                                use_overflow: True
+                                bar_width:0
+                                MDBoxLayout:
+                                    adaptive_width:True
+                                    spacing:dp(20)
+                                    padding:dp(5)
+                                    BottomCard:
+                                        image:'images/9.jpg'
+                                    BottomCard:
+                                        image:"images/16.png"
+                                    BottomCard:
+                                        image:'images/6.png'
+                                    BottomCard:
+                                        image:'images/4.png'
+
+
+                        MDBoxLayout:
+                            size_hint_y:0
+                            height:dp(40)
+                            spacing:dp(470)
+                            MDIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                icon:"dots-grid"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                            MDRectangleFlatIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                text:"По популярности"
+                                icon:"text"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                theme_text_color:'Custom'
+                                text_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                            MDIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                icon:"filter"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                                on_press: root.manager.current = 'filter'
+
+
 
                         MDBoxLayout:
 
@@ -58,21 +314,178 @@ MDNavigationLayout:
                                         price:'   81 500 ₽'
                                         rate:"4.7     42 отзыва"
                                         specifications:"   Смартфон  Apple iPhone 13 Pro Max "
+                                        #about:"   О товаре\niPhone 13 Pro. Новые камеры. Нереальные возможности.\niPhone 13 Pro. Грандиозный апгрейд камер Pro. Режим «Киноэффект» делает из видео настоящее кино. Дисплей Super Retina XDR с технологией ProMotion для более быстрого и плавного взаимодействия. А15 Bionic — самый быстрый чип для iPhone. Прочный корпус и огромный прирост ресурса аккумулятора.\nОсновные характеристики\n· Дисплей Super Retina XDR 6,1 дюйма1 с технологией ProMotion для более быстрого и плавного взаимодействия;\n· Режим «Киноэффект» автоматически переводит фокус между объектами при съёмке видео и создаёт красивый эффект размытия;\n· Обновлённая система камер Pro 12 Мп (телефото, широкоугольная и сверхширокоугольная); сканер LiDAR; диапазон оптического зума 6x; режим макросъёмки; Фотографические стили, видео в формате ProRes2, Smart HDR 4, Ночной режим, формат Apple ProRAW, съёмка HDR‑видео 4K в стандарте Dolby Vision;\n· A15 Bionic — самый быстрый чип для iPhone;\n· До 22 часов воспроизведения видео3;\n· Панель Ceramic Shield для повышенной прочности;\n· Надёжная защита от воды (IP68)4;\n· iOS 15 с новыми функциями, расширяющими возможности iPhone5;\n· Поддержка аксессуаров MagSafe, которые легко крепятся и обеспечивают более быструю беспроводную зарядку6."
                                     ElementCard:
                                         image:'images/2.jpg'
                                         price:'   83 990 ₽'
                                         rate:" 4.3    38 отзывов"
                                         specifications:"   Смартфон Samsung Galaxy Z Flip3 "
+                                        #about:"rbgntr"
                                     ElementCard:
                                         image:'images/3_2.jpg'
                                         price:'   95 776 ₽'
                                         rate:" 4.3    112 отзывов"
                                         specifications:"   Смартфон HUAWEI Mate30 Pro"
+                                        #about:"rbgntr"
                                     ElementCard:
                                         image:'images/3.jpg'
                                         price:'   33 990 ₽'
                                         rate:" 4.8   89 отзывов"
                                         specifications:"   Смартфон Xiaomi 12 Lite"
+                                        #about:"rbgntr"
+                                    ElementCard:
+                                        image:'images/11.png'
+                                        price:'   35 999 ₽'
+                                        rate:" 4.6   26 отзывов"
+                                        specifications:"   Смартфон Honor 70 Midnight Black "
+                                        #about:"rbgntr"
+                                    ElementCard:
+                                        image:'images/12.png'
+                                        price:'   34 490 ₽'
+                                        rate:" 4.5   124 отзыва"
+                                        specifications:"   Смартфон Google Pixel"
+
+
+    MDNavigationDrawer:
+        id: nav_drawer
+
+        ContentNavigationDrawer:
+            id: content_drawer
+   # MDBoxLayout:
+       # MDIconButton:
+           # icon:"menu"
+            #on_press: root.manager.current = 'settings'
+
+
+<TableScreen>:
+    ScreenManager:
+        MDScreen:
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDTopAppBar:
+                    #title: "                                                                                                      Планшеты"
+                    use_overflow: True
+                    left_action_items:[['account-circle', lambda x: nav_drawer.set_state("open")]]
+                    right_action_items:
+                        [
+                        #["home", lambda x: app.callback(x), "Home", "Home"],
+                        #['account-circle', lambda x: nav_drawer.set_state("open"),"Account-circle","Account-circle"],
+                        ["cart-outline", lambda x: app.set_screen('cart'), "Корзина", "Message star"],
+                        ["message-question", lambda x: app.set_screens("help_me"), "Поддержка", "Message question"],
+                        ]
+                    md_bg_color:"#8B00FF"
+                Widget:
+                    MDBoxLayout:
+                        height:dp(999)
+                        width:dp(1250)
+                        orientation:"vertical"
+                        MDBoxLayout:
+                            size_hint_y:0
+                            height:dp(40)
+                            spacing:dp(470)
+                            MDIconButton:
+                                icon:"arrow-left-thin"
+                                on_press: root.manager.current = 'main'
+                            MDLabel:
+                                text:"       Планшеты"
+                                font_style: "Caption"
+                                font_style:'H5'
+                                theme_text_color:'Custom'
+                                text_color:"#1B0B42"
+
+                        MDBoxLayout:
+                            size_hint_y:0
+                            height:dp(210)
+                            #width:dp(300)
+                            padding:[dp(5),dp(5),dp(5),dp(10)]
+
+
+                            ScrollView:
+                                use_overflow: True
+                                bar_width:0
+                                MDBoxLayout:
+                                    adaptive_width:True
+                                    spacing:dp(20)
+                                    padding:dp(5)
+                                    BottomCard:
+                                        image:'images/9.jpg'
+                                    BottomCard:
+                                        image:"images/16.png"
+                                    BottomCard:
+                                        image:'images/6.png'
+                                    BottomCard:
+                                        image:'images/4.png'
+
+                        MDBoxLayout:
+                            size_hint_y:0
+                            height:dp(40)
+                            spacing:dp(470)
+                            MDIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                icon:"dots-grid"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                            MDRectangleFlatIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                text:"По популярности"
+                                icon:"text"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                theme_text_color:'Custom'
+                                text_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                            MDIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                icon:"filter"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                                on_press: root.manager.current = 'filter'
+
+
+
+                        MDBoxLayout:
+
+                            ScrollView:
+                                MDGridLayout:
+                                    cols:2
+                                    padding:dp(20)
+                                    spacing:dp(20)
+                                    adaptive_height:True
+
+                                    ElementCard:
+                                        image:'images/17.jpg'
+                                        price:'   115 900 ₽'
+                                        rate:"0.0 Отзывов ещё нет "
+                                        specifications:"   Планшет Apple iPad Pro 12.9 "
+                                        #about:"   О товаре\niPhone 13 Pro. Новые камеры. Нереальные возможности.\niPhone 13 Pro. Грандиозный апгрейд камер Pro. Режим «Киноэффект» делает из видео настоящее кино. Дисплей Super Retina XDR с технологией ProMotion для более быстрого и плавного взаимодействия. А15 Bionic — самый быстрый чип для iPhone. Прочный корпус и огромный прирост ресурса аккумулятора.\nОсновные характеристики\n· Дисплей Super Retina XDR 6,1 дюйма1 с технологией ProMotion для более быстрого и плавного взаимодействия;\n· Режим «Киноэффект» автоматически переводит фокус между объектами при съёмке видео и создаёт красивый эффект размытия;\n· Обновлённая система камер Pro 12 Мп (телефото, широкоугольная и сверхширокоугольная); сканер LiDAR; диапазон оптического зума 6x; режим макросъёмки; Фотографические стили, видео в формате ProRes2, Smart HDR 4, Ночной режим, формат Apple ProRAW, съёмка HDR‑видео 4K в стандарте Dolby Vision;\n· A15 Bionic — самый быстрый чип для iPhone;\n· До 22 часов воспроизведения видео3;\n· Панель Ceramic Shield для повышенной прочности;\n· Надёжная защита от воды (IP68)4;\n· iOS 15 с новыми функциями, расширяющими возможности iPhone5;\n· Поддержка аксессуаров MagSafe, которые легко крепятся и обеспечивают более быструю беспроводную зарядку6."
+                                    ElementCard:
+                                        image:'images/18.jpg'
+                                        price:'   27 580 ₽'
+                                        rate:" 4.8    402 отзыва"
+                                        specifications:"   Планшет Xiaomi Pad 5  "
+                                        #about:"rbgntr"
+                                    ElementCard:
+                                        image:'images/20.jpg'
+                                        price:'   56 999 ₽'
+                                        rate:" 4.7    15 отзывов"
+                                        specifications:"   Планшет Samsung Galaxy Tab S8"
+                                        #about:"rbgntr"
+                                    ElementCard:
+                                        image:'images/19.jpg'
+                                        price:'   23 517 ₽'
+                                        rate:" 4.6   77 отзывов"
+                                        specifications:"   Планшет Lenovo Tab P11 TB-J606F"
+                                        #about:"rbgntr"
+
 
     MDNavigationDrawer:
         id: nav_drawer
@@ -80,22 +493,199 @@ MDNavigationLayout:
         ContentNavigationDrawer:
             id: content_drawer
 
+<AccessScreen>:
+    ScreenManager:
+        MDScreen:
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDTopAppBar:
+                    #title: "                                                                                                      Планшеты"
+                    use_overflow: True
+                    left_action_items:[['account-circle', lambda x: nav_drawer.set_state("open")]]
+                    right_action_items:
+                        [
+                        #["home", lambda x: app.callback(x), "Home", "Home"],
+                        #['account-circle', lambda x: nav_drawer.set_state("open"),"Account-circle","Account-circle"],
+                        ["cart-outline", lambda x: app.set_screen('cart'), "Корзина", "Message star"],
+                        ["message-question", lambda x: app.set_screens("help_me"), "Поддержка", "Message question"],
+                        ]
+                    md_bg_color:"#8B00FF"
+                Widget:
+                    MDBoxLayout:
+                        height:dp(999)
+                        width:dp(1250)
+                        orientation:"vertical"
+                        MDBoxLayout:
+                            size_hint_y:0
+                            height:dp(40)
+                            spacing:dp(470)
+                            MDIconButton:
+                                icon:"arrow-left-thin"
+                                on_press: root.manager.current = 'main'
+                            MDLabel:
+                                text:"       Аксессуары"
+                                font_style: "Caption"
+                                font_style:'H5'
+                                theme_text_color:'Custom'
+                                text_color:"#1B0B42"
+
+                        MDBoxLayout:
+                            size_hint_y:0
+                            height:dp(210)
+                            #width:dp(300)
+                            padding:[dp(5),dp(5),dp(5),dp(10)]
+
+
+                            ScrollView:
+                                use_overflow: True
+                                bar_width:0
+                                MDBoxLayout:
+                                    adaptive_width:True
+                                    spacing:dp(20)
+                                    padding:dp(5)
+                                    BottomCard:
+                                        image:'images/9.jpg'
+                                    BottomCard:
+                                        image:"images/16.png"
+                                    BottomCard:
+                                        image:'images/6.png'
+                                    BottomCard:
+                                        image:'images/4.png'
+
+                        MDBoxLayout:
+                            size_hint_y:0
+                            height:dp(40)
+                            spacing:dp(470)
+                            MDIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                icon:"dots-grid"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                            MDRectangleFlatIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                text:"По популярности"
+                                icon:"text"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                theme_text_color:'Custom'
+                                text_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                            MDIconButton:
+                                size_hint_x:0
+                                pos_hint:{"x":100}
+                                icon:"filter"
+                                theme_color:'Custom'
+                                icon_color:"#1B0B42"
+                                font_style:"H6"
+                                line_color: "#FBFBFB"
+                                on_press: root.manager.current = 'filter'
+
+
+
+                        MDBoxLayout:
+
+                            ScrollView:
+                                MDGridLayout:
+                                    cols:2
+                                    padding:dp(20)
+                                    spacing:dp(20)
+                                    adaptive_height:True
+
+                                    ElementCard:
+                                        image:'images/21.jpg'
+                                        price:'   199 ₽'
+                                        rate:"4.4     42 отзыва"
+                                        specifications:"   Чехол Deppa Liquid Silicone Case для Apple iPhone 11 Pro "
+                                        #about:"   О товаре\niPhone 13 Pro. Новые камеры. Нереальные возможности.\niPhone 13 Pro. Грандиозный апгрейд камер Pro. Режим «Киноэффект» делает из видео настоящее кино. Дисплей Super Retina XDR с технологией ProMotion для более быстрого и плавного взаимодействия. А15 Bionic — самый быстрый чип для iPhone. Прочный корпус и огромный прирост ресурса аккумулятора.\nОсновные характеристики\n· Дисплей Super Retina XDR 6,1 дюйма1 с технологией ProMotion для более быстрого и плавного взаимодействия;\n· Режим «Киноэффект» автоматически переводит фокус между объектами при съёмке видео и создаёт красивый эффект размытия;\n· Обновлённая система камер Pro 12 Мп (телефото, широкоугольная и сверхширокоугольная); сканер LiDAR; диапазон оптического зума 6x; режим макросъёмки; Фотографические стили, видео в формате ProRes2, Smart HDR 4, Ночной режим, формат Apple ProRAW, съёмка HDR‑видео 4K в стандарте Dolby Vision;\n· A15 Bionic — самый быстрый чип для iPhone;\n· До 22 часов воспроизведения видео3;\n· Панель Ceramic Shield для повышенной прочности;\n· Надёжная защита от воды (IP68)4;\n· iOS 15 с новыми функциями, расширяющими возможности iPhone5;\n· Поддержка аксессуаров MagSafe, которые легко крепятся и обеспечивают более быструю беспроводную зарядку6."
+                                    ElementCard:
+                                        image:'images/22.jpg'
+                                        price:'   136,39 руб.'
+                                        rate:" 4.9    68 отзывов"
+                                        specifications:"   Чехол для Samsung Galaxy S20 S21 FE "
+                                        #about:"rbgntr"
+                                    ElementCard:
+                                        image:'images/23.jpg'
+                                        price:'   1 024,35 руб.'
+                                        rate:" 4.6    861 отзыв"
+                                        specifications:"   Беспроводная Bluetooth клавиатура Teclado"
+                                        #about:"rbgntr"
+
+
+    MDNavigationDrawer:
+        id: nav_drawer
+
+        ContentNavigationDrawer:
+            id: content_drawer
+<ElementCard@MDCard>:
+    image:''
+    rate:''
+    price:""
+    specifications:""
+    about:""
+    orientation:'vertical'
+    on_release:app.show_custom_bottom_sheet(root.image,root.price,root.rate,root.specifications,root.about)
+    size_hint_x:.6
+    elevation:15
+    size_hint_y:None
+    md_bg_color:"#FFFFFF"
+    height:dp(550)
+    padding:dp(0)
+    spacing:dp(0)
+    radius:[5]
+    MDBoxLayout:
+        height:dp(400)
+        width:dp(700)
+        size_hint_y:None
+        Image:
+            source:root.image
+    MDBoxLayout:
+        height:dp(7)
+        spacing:dp(0)
+        padding:dp(15)
+        MDIcon:
+            icon:'star-outline'
+            theme_text_color:'Custom'
+            text_color:"#8B00FF"
+            halign:"center"
+            size_hint_x:.15
+        MDLabel:
+            text:root.rate
+            theme_text_color:'Custom'
+            text_color:"#8B00FF"
+            font_style:"H6"
+    MDLabel:
+        text:root.price
+        font_style:'H5'
+        theme_text_color:'Custom'
+        text_color:"#1B0B42"
+    MDLabel:
+        text:root.specifications
+        theme_text_color:'Custom'
+        text_color:"#1B0B42"
+        font_style:"H6"
+
 <ItemDrawer>:
     theme_text_color: "Custom"
     on_release: self.parent.set_color_item(self)
 
-    IconLeftWidget:
+    IconRightWidget:
         id: icon
         icon: root.icon
         theme_text_color: "Custom"
         text_color: root.text_color
 
 
+
 <ContentNavigationDrawer>:
     orientation: "vertical"
-    padding: "10dp"
+    padding: "5dp"
     spacing: "10dp"
-
     AnchorLayout:
         anchor_x: "left"
         size_hint_y: None
@@ -104,19 +694,53 @@ MDNavigationLayout:
         Image:
             id: avatar
             size_hint: None, None
-            size: "250dp", "250dp"
-            source: "images/10.png"
+            size: "70dp", "70dp"
+            source: "images/10.jpg"
 
+        MDLabel:
+            text:"                   user_name \n                   user_surname"
+            font_style: "Button"
+            font_size:15
+            adaptive_height: True
     MDLabel:
-        text: "user_mova_1"
-        font_style: "Button"
-        adaptive_height: True
-
-    MDLabel:
-        text: "my_emal@gmail.com"
+        text: "мой кабинет "
         font_style: "Caption"
+        bold:True
+        font_size:25
         adaptive_height: True
-
+    MDRoundFlatButton:
+        text: "мои покупки                >"
+        font_style: "Caption"
+        font_size:20
+        theme_text_color:'Custom'
+        text_color:"#1B0B42"
+        line_color:"#FBFBFB"
+        adaptive_height: True
+        on_press: root.manager.current = 'in'
+    MDRoundFlatButton:
+        text: "избранное                    >"
+        font_style: "Caption"
+        font_size:20
+        theme_text_color:'Custom'
+        text_color:"#1B0B42"
+        line_color:"#FBFBFB"
+        adaptive_height: True
+    MDRoundFlatButton:
+        text: "доставка и оплата     >"
+        font_style: "Caption"
+        font_size:20
+        theme_text_color:'Custom'
+        text_color:"#1B0B42"
+        line_color:"#FBFBFB"
+        adaptive_height: True
+    MDRoundFlatButton:
+        text: "выход                            >"
+        font_style: "Caption"
+        font_size:20
+        theme_text_color:'Custom'
+        text_color:"#1B0B42"
+        line_color:"#FBFBFB"
+        adaptive_height: True
     ScrollView:
 
         DrawerList:
@@ -167,23 +791,21 @@ MDNavigationLayout:
 <ContentCustomSheet@MDBoxLayout>:
     orientation: "vertical"
     size_hint_y: None
-    height:dp(750)
+    height:dp(1000)
     image:''
     rate:""
     price:""
     specifications:""
+    about:""
     padding:dp(5)
     spacing:dp(6)
-    MDBoxLayout:
+
+    Image:
         height:dp(400)
         width:dp(700)
         size_hint_y:None
         pos:(20,10)
-        Image:
-            source:root.image
-            #price:root.price
-            #rate:root.rate
-            #specifications:root.specifications
+        source:root.image
     MDLabel:
         text:root.specifications
         font_style:'H5'
@@ -195,10 +817,10 @@ MDNavigationLayout:
         theme_text_color:'Custom'
         text_color:"#1B0B42"
     MDLabel:
-        text:"-20%"
+        text:root.about
+        font_style:'H5'
         theme_text_color:'Custom'
-        text_color:"#FFFFFF"
-        md_bg_color:"#1B0B42"
+        text_color:"#1B0B42"
 
     MDBoxLayout:
         spacing:dp(5)
@@ -264,63 +886,6 @@ MDNavigationLayout:
     theme_text_color:'Custom'
     text_color:"#1B0B42"
 
-<ElementCard@MDCard>:
-    image:''
-    rate:''
-    price:""
-    specifications:""
-    orientation:'vertical'
-    on_release:app.show_custom_bottom_sheet(root.image,root.price,root.rate,root.specifications)
-    size_hint_x:.6
-    elevation:15
-    size_hint_y:None
-    md_bg_color:"#FFFFFF"#app.theme_cls.primary_color
-    height:dp(550)
-    padding:dp(0)
-    spacing:dp(0)
-    radius:[5]
-    #MDBoxLayout:
-     #   MDIconButton:
-      #      size_hint_y:None
-       #     icon:"heart"
-        #    theme_icon_color:"Custom"
-         #   icon_size:"30sp"
-          #  icon_color:"#1B0B42"
-           # on_press:self.background_color="#8B00FF"
-            #on_release:self.background_color="#1B0B42"
-    MDBoxLayout:
-        height:dp(400)
-        width:dp(700)
-        size_hint_y:None
-        Image:
-            source:root.image
-    MDBoxLayout:
-        height:dp(10)
-        spacing:dp(0)
-        padding:dp(7)
-        MDIcon:
-            icon:'star-outline'
-            theme_text_color:'Custom'
-            text_color:"#8B00FF"
-            halign:"center"
-            size_hint_x:.15
-        MDLabel:
-            text:root.rate
-            theme_text_color:'Custom'
-            text_color:"#8B00FF"
-            font_style:"H6"
-    MDLabel:
-        text:root.price
-        font_style:'H5'
-        theme_text_color:'Custom'
-        text_color:"#1B0B42"
-    MDLabel:
-        text:root.specifications
-        theme_text_color:'Custom'
-        text_color:"#1B0B42"
-        font_style:"H6"
-
-
 
 <TabCard@MDCard>:
     icon:""
@@ -332,4 +897,3 @@ MDNavigationLayout:
         icon:root.icon
     MDLabel:
         text:root.text
-

@@ -1,0 +1,44 @@
+<Help_meScreen>:
+    MDScreen:
+        MDBoxLayout:
+            height:dp(1000)
+            orientation: 'vertical'
+            MDIconButton:
+                icon:"arrow-left-thin"
+                on_press: root.manager.current = 'main'
+            RelativeLayout:
+                Image:
+                    source:'images/helper.png'
+                    size_hint:None,None
+                    size:'500dp','500dp'
+                    pos_hint:{'center_x':.5,'center_y':.5}
+            MDBoxLayout:
+                MDLabel:
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    size_hint_y:1
+                    text:"Способы связаться с нами:\nТелефон: +7 (***) ***-**-**\nEmail: kivy_lucas@luca.com."
+                    theme_text_color:"Custom"
+                    text_color:"#1B0B42"
+                    font_style:"H4"
+<Ac_helpScreen>:
+    MDScreen:
+        MDBoxLayout:
+            height:dp(1000)
+            orientation: 'vertical'
+            MDIconButton:
+                icon:"arrow-left-thin"
+                on_press: root.manager.current = 'main'
+            RelativeLayout:
+                Image:
+                    source:'images/icons.png'
+                    size_hint:None,None
+                    size:'700dp','700dp'
+                    pos_hint:{'center_x':.5,'center_y':.5}
+            MDBoxLayout:
+                MDLabel:
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    size_hint_y:1
+                    text:"Mova-интернет магазин электроники,сделанный для курсовой работы РТУ МИРЭА.\nДанная курсовая сделана @sweet_lucas."
+                    theme_text_color:"Custom"
+                    text_color:"#1B0B42"
+                    font_style:"H4"

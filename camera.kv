@@ -1,0 +1,37 @@
+#: import Window kivy.core.window.Window
+<CameraClick>:
+    orientation: 'vertical'
+    spacing:'20dp'
+    padding:'20dp'
+    Camera:
+        id: camera
+        resolution: (1600,2000)
+        play: True
+    MDRectangleFlatButton:
+        text: 'Щелк!'
+        size_hint_y: None
+        height: '48dp'
+        pos_hint:{'center_x':.5,'center_y':.5}
+        size_hint_x:1
+        font_style:'H4'
+        theme_text_color:'Custom'
+        text_color: "#FFFFFF"
+        icon_color:"#FFFFFF"
+        font_style: "Subtitle1"
+        line_color: "#7B68EE"
+        md_bg_color:"#7B68EE"
+        on_release: root.capture()
+    MDRectangleFlatButton:
+        text: 'Назад'
+        size_hint_y: None
+        height: '48dp'
+        pos_hint:{'center_x':.5,'center_y':.5}
+        size_hint_x:1
+        font_style:'H4'
+        theme_text_color:'Custom'
+        text_color: "#FFFFFF"
+        icon_color:"#FFFFFF"
+        font_style: "Subtitle1"
+        line_color: "#7B68EE"
+        md_bg_color:"#7B68EE"
+        on_press: root.manager.current = 'in'
